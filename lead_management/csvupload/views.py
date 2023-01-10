@@ -8,7 +8,10 @@ import csv
 from datetime import datetime
 
 def home(request):
-    if request.method=='POST':
+    return render(request,'index.html')
+
+def upload(request):
+   # if request.method=='POST':
         file2 = request.FILES['file']
         document = FileUpload.objects.create(file=file2)
         document.save()
@@ -19,9 +22,13 @@ def home(request):
         print(df.to_dict(orient='records'))
         df_to_dict = df.to_dict(orient='records')
         print(df_to_dict[1]['Name'])
-        if int(current_time) >=9 and int(current_time) <18:
+        if int(current_time) >=9 and int(current_time) <23:
             return render(request,'index2.html',{'data': df.to_dict(orient='records')})
         else:
             return HttpResponse("Please add data between 9 to 6 only")
-    return render(request,'index.html')
+    
+
+
+
+
 

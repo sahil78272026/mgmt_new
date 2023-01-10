@@ -33,7 +33,7 @@
             {% for row in data %}
             <tr>
                 {% for value in row.values %}
-                <td>{{ value }}</td>
+                <td contenteditable='true'>{{ value }}</td>
                 {% endfor %}
             </tr>
             {% endfor %}
