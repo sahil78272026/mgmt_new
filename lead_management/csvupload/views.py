@@ -16,7 +16,10 @@ def home(request):
         df = pd.read_csv(path)
         now = datetime.now()
         current_time = now.strftime("%H")
-        if int(current_time) >=9 and int(current_time) <=18:
+        print(df.to_dict(orient='records'))
+        df_to_dict = df.to_dict(orient='records')
+        print(df_to_dict[1]['Name'])
+        if int(current_time) >=9 and int(current_time) <18:
             return render(request,'index2.html',{'data': df.to_dict(orient='records')})
         else:
             return HttpResponse("Please add data between 9 to 6 only")

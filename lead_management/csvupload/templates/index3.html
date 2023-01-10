@@ -1,0 +1,44 @@
+<html>
+<head>
+  <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  </style>
+</head>
+<body>
+  <table id="csv-table">
+    <!-- Rows and columns will be added here dynamically -->
+  </table>
+  <script>
+    // Parse the CSV file and add the rows and columns to the table
+    fetch('D:/Python/Python_Django/trydjango/env/lead_management/media/potential_customer_data_7Ubq3XG.csv')
+      .then(response => response.text())
+      .then(csv => {
+        const rows = csv.split('\n');
+        rows.forEach(row => {
+          const cols = row.split(',');
+          const tr = document.createElement('tr');
+          cols.forEach(col => {
+            const td = document.createElement('td');
+            td.textContent = col;
+            tr.appendChild(td);
+          });
+          document.getElementById('csv-table').appendChild(tr);
+        });
+      });
+  </script>
+</body>
+</html>
